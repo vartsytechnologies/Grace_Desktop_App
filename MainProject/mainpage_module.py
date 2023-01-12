@@ -1,6 +1,8 @@
+import os
 from tkinter import *
 from tkinter import ttk
 import time
+import os
 
 class Mainpage:
     def __init__(self,master):
@@ -217,23 +219,41 @@ class Mainpage:
             separator1 = Frame(self.side_frame, width=300, height=2)
             separator1.place(relx=0, rely=0.37)
 
+            #====================================button_control_functions=================================
+            def membership():
+                os.system("python membership_module.py")
+                master.deiconify()
+
+            def new_member():
+                os.system("python new_membership_module.py")
+                master.deiconify()
+
+            def tithes():
+                os.system("python tithe_offering_module.py")
+                master.deiconify()
+
+            def attendance():
+                os.system("python attendance_module.py")
+                master.deiconify()
+
             # ==================================side__bar__buttons============================
+
             self.btn_1 = Button(self.side_frame, text="Membership", bd=0, fg="blue", bg="white",
                                 font=(" times new romans", 14), activeforeground="red", activebackground="white",
-                                command="member")
+                                command=membership)
             self.btn_1.place(relx=0.2, rely=0.4)
             self.btn_2 = Button(self.side_frame, text="Add New Members", bd=0, fg="blue", bg="white",
                                 font=(" times new romans", 14), activeforeground="red", activebackground="white",
-                                command="add_mem")
+                                command=new_member)
             self.btn_2.place(relx=0.2, rely=0.47)
             self.btn_3 = Button(self.side_frame, text="Tithes and Offering", bd=0, fg="blue", bg="white",
-                                command="tithe",
+                                command=tithes,
                                 font=(" times new romans", 14), activeforeground="red", activebackground="white")
             self.btn_3.place(relx=0.2, rely=0.54)
 
             self.btn_4 = Button(self.side_frame, text="Ai Attendance System", bd=0, fg="blue", bg="white",
                                 font=(" times new romans", 14), activeforeground="red", activebackground="white",
-                                command="attendance")
+                                command=attendance)
             self.btn_4.place(relx=0.2, rely=0.61)
 
             self.btn_5 = Button(self.side_frame, text="Departments", bd=0, fg="blue", bg="white",
