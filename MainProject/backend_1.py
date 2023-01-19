@@ -1,6 +1,5 @@
 import psycopg2
 import psycopg2.extras
-import sqlite3
 
 hostname = 'localhost'
 database = 'membershipdb'
@@ -9,9 +8,10 @@ pwd = 'pgdata_0589'
 port_id = 5432
 
 
-def insert(memberId, memberName, memberType, placeofBirth, dateofBirth, gender, fax, employer, hometown, region, tither,
-           healthStatus, department, telephone, address, email, maritalStatus, occupation, companyName, postAddress,
-           emergencyContact, educationLevel, yearCompleted):
+def insert(memberId= ' ', memberName= ' ', memberType= ' ', placeofBirth= ' ', dateofBirth= ' ', gender= ' ', fax= ' ',
+           employer= ' ', hometown= ' ', region= ' ', tither= ' ',
+           healthStatus= ' ', department= ' ', telephone= ' ', address= ' ', email= ' ', maritalStatus= ' ', occupation= ' ',
+           companyName= ' ', postAddress= ' ',emergencyContact= ' ', educationLevel= ' ', yearCompleted= ' '):
     conn = None
     cur = None
     try:
@@ -22,7 +22,7 @@ def insert(memberId, memberName, memberType, placeofBirth, dateofBirth, gender, 
             password=pwd,
             port=port_id
         )
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur = conn.cursor()
         cur.execute('DROP TABLE IF EXISTS personal_info')
         create_script = """
                         CREATE TABLE IF NOT EXISTS personal_info
@@ -72,6 +72,7 @@ def insert(memberId, memberName, memberType, placeofBirth, dateofBirth, gender, 
             cur.close()
         if conn is not None:
             conn.close()
+
 
 
 # def connect():
