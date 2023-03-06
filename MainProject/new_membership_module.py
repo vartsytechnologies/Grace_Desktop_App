@@ -1,13 +1,41 @@
 from tkinter import *
 from tkinter import ttk
+from tkcalendar import DateEntry
 import random
+import backend_1
 
-class Add_Member():
-    def __init__(self,master):
+
+class AddMember:
+    def __init__(self, master):
         self.master = master
         self.master.title("Grace Chapel")
-        self.master.geometry("1400x750+0+0")
+        self.master.geometry("1350x700+0+0")
         self.master.resizable(0, 0)
+        # ==============================membership variables===================================
+        self.id = StringVar()
+        self.name = StringVar()
+        self.type = StringVar()
+        self.place_of_birth = StringVar()
+        self.date_of_birth = StringVar()
+        self.gender = StringVar()
+        self.department = StringVar()
+        self.SEARCH = StringVar()
+        self.phone = IntVar()
+        self.address = StringVar()
+        self.email = StringVar()
+        self.status = StringVar()
+        self.occupation = StringVar()
+        self.fax = StringVar()
+        self.employer = StringVar()
+        self.hometown = StringVar()
+        self.region = StringVar()
+        self.Tithe = StringVar()
+        self.health = StringVar()
+        self.company = StringVar()
+        self.pst_address = StringVar()
+        self.emergency_contact = IntVar()
+        self.level = StringVar()
+        self.year_completed = IntVar()
 
         def add_mem():
 
@@ -19,9 +47,6 @@ class Add_Member():
                                 font=("arial", 18, "bold"))
             self.sublbl.place(relx=0.3, rely=0.2)
 
-            # ==============================functions===================================
-            self.id = StringVar()
-            self.name = StringVar()
 
             # =========================================frames ================================================
             self.con_frame_1 = LabelFrame(self.fm, text="PERSONAL DETAILS", width=1200, height=300, bg="white")
@@ -52,7 +77,7 @@ class Add_Member():
             self.data_c = Label(self.con_frame_1, text="Membership Type", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_c.place(relx=0.01, rely=0.31)
-            self.data_c_1 = ttk.Combobox(self.con_frame_1, width=28, textvariable="self.type", value=(
+            self.data_c_1 = ttk.Combobox(self.con_frame_1, width=28, textvariable=self.type, value=(
             "Pastor", "Usher", "Deacon/Deaconess", "Departmental Head", "Instrumentalist", "Singer"),
                                          font=("times new roman", 14))
             self.data_c_1.place(relx=0.2, rely=0.31)
@@ -61,21 +86,21 @@ class Add_Member():
                                 fg="black")
             self.data_d.place(relx=0.01, rely=0.46)
             self.data_d_1 = Entry(self.con_frame_1, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.place_of_birth")
+                                  textvariable=self.place_of_birth)
             self.data_d_1.place(relx=0.2, rely=0.46)
 
             self.data_e = Label(self.con_frame_1, text="Date Of Birth", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_e.place(relx=0.01, rely=0.61)
-            self.data_e_1 = Entry(self.con_frame_1, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.date_of_birth")
+            self.data_e_1 = DateEntry(self.con_frame_1, width=30, bg="white", fg="black", font=("times new roman", 14),
+                                    textvariable=self.date_of_birth, date_pattern='yyyy-mm-dd')
             self.data_e_1.place(relx=0.2, rely=0.61)
 
             self.data_f = Label(self.con_frame_1, text="Gender", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_f.place(relx=0.01, rely=0.76)
             self.data_f_1 = ttk.Combobox(self.con_frame_1, width=28, value=("Male", "Female", "Others"),
-                                         font=("times new roman", 14), textvariable="self.gender")
+                                         font=("times new roman", 14), textvariable=self.gender)
             self.data_f_1.place(relx=0.2, rely=0.76)
 
             self.data_g = Label(self.con_frame_1, text="Department", font=("times new roman", 15), bg="white",
@@ -83,28 +108,28 @@ class Add_Member():
             self.data_g.place(relx=0.5, rely=0.01)
             self.data_g_1 = ttk.Combobox(self.con_frame_1, width=20, value=(
                 "Church Board", "Men", "Youth", "Women", "Children", "Music", "Intercessors", "Evangelism", "Ushering"),
-                                         font=("times new roman", 14), textvariable="self.department")
+                                         font=("times new roman", 14), textvariable=self.department)
             self.data_g_1.place(relx=0.6, rely=0.01)
 
             self.data_i = Label(self.con_frame_1, text="Telephone", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_i.place(relx=0.5, rely=0.16)
             self.data_i_1 = Entry(self.con_frame_1, width=22, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.phone")
+                                  textvariable=self.phone)
             self.data_i_1.place(relx=0.6, rely=0.16)
 
             self.data_j = Label(self.con_frame_1, text="Address", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_j.place(relx=0.5, rely=0.31)
             self.data_j_1 = Entry(self.con_frame_1, width=22, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.address")
+                                  textvariable=self.address)
             self.data_j_1.place(relx=0.6, rely=0.31)
 
             self.data_k = Label(self.con_frame_1, text="Email", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_k.place(relx=0.5, rely=0.46)
             self.data_k_1 = Entry(self.con_frame_1, width=22, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.email")
+                                  textvariable=self.email)
             self.data_k_1.place(relx=0.6, rely=0.46)
 
             self.data_l = Label(self.con_frame_1, text="Marital Status", font=("times new roman", 15), bg="white",
@@ -112,14 +137,14 @@ class Add_Member():
             self.data_l.place(relx=0.5, rely=0.61)
             self.data_l_1 = ttk.Combobox(self.con_frame_1, width=20, value=(
                 "Married", "Single", "Separated", "Window/Widower", "Others"),
-                                         font=("times new roman", 14), textvariable="self.status")
+                                         font=("times new roman", 14), textvariable=self.status)
             self.data_l_1.place(relx=0.6, rely=0.61)
 
             self.data_m = Label(self.con_frame_1, text="Occupation", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_m.place(relx=0.5, rely=0.76)
             self.data_m_1 = Entry(self.con_frame_1, width=22, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.occupation")
+                                  textvariable=self.occupation)
             self.data_m_1.place(relx=0.6, rely=0.76)
 
             self.upload_btn = Button(self.con_frame_1, text="Upload Photo", font=("times new roman ", 14), width=18,
@@ -141,21 +166,21 @@ class Add_Member():
                                 fg="black")
             self.data_1.place(relx=0.01, rely=0.01)
             self.data_1_1 = Entry(self.con_frame_2, width=25, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.fax")
+                                  textvariable=self.fax)
             self.data_1_1.place(relx=0.2, rely=0.01)
 
             self.data_2 = Label(self.con_frame_2, text="Employer", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_2.place(relx=0.01, rely=0.16)
             self.data_2_1 = Entry(self.con_frame_2, width=25, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.emloyer")
+                                  textvariable=self.employer)
             self.data_2_1.place(relx=0.2, rely=0.16)
 
             self.data_1 = Label(self.con_frame_2, text="Hometown", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_1.place(relx=0.01, rely=0.31)
             self.data_1_1 = Entry(self.con_frame_2, width=25, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.hometown")
+                                  textvariable=self.hometown)
             self.data_1_1.place(relx=0.2, rely=0.31)
 
             self.data_l = Label(self.con_frame_2, text="Region", font=("times new roman", 15), bg="white",
@@ -164,7 +189,7 @@ class Add_Member():
             self.data_l_1 = ttk.Combobox(self.con_frame_2, width=23, value=(
                 "Greater Accra", "Oti", "Bono East", "Central", "Eastern", "Upper East", "Upper West", "Savana",
                 "Volta", "North East", "Bono", "Ahafo", "Western North", "Northern", "Ashanti", "Westerm"),
-                                         font=("times new roman", 14), textvariable="self.region")
+                                         font=("times new roman", 14), textvariable=self.region)
             self.data_l_1.place(relx=0.2, rely=0.46)
 
             self.data_l = Label(self.con_frame_2, text="Tither", font=("times new roman", 15), bg="white",
@@ -172,59 +197,59 @@ class Add_Member():
             self.data_l.place(relx=0.01, rely=0.61)
             self.data_l_1 = ttk.Combobox(self.con_frame_2, width=23, value=(
                 "Yes", "No",),
-                                         font=("times new roman", 14), textvariable="self.Tithe")
+                                         font=("times new roman", 14), textvariable=self.Tithe)
             self.data_l_1.place(relx=0.2, rely=0.61)
 
             self.data_1 = Label(self.con_frame_2, text="Heath Status", font=("times new roman", 15), bg="white",
                                 fg="black")
             self.data_1.place(relx=0.01, rely=0.76)
             self.data_1_1 = Entry(self.con_frame_2, width=25, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.health")
+                                  textvariable=self.health)
             self.data_1_1.place(relx=0.2, rely=0.76)
 
-            self.data_g = Label(self.con_frame_2, text="Department", font=("times new roman", 15), bg="white",
-                                fg="black")
-            self.data_g.place(relx=0.5, rely=0.01)
-            self.data_g_1 = ttk.Combobox(self.con_frame_2, width=28, value=(
-                "Church Board", "Men", "Youth", "Women", "Children", "Music", "Intercessors", "Evangelism", "Ushering"),
-                                         font=("times new roman", 14), textvariable="self.how")
-            self.data_g_1.place(relx=0.65, rely=0.01)
+            # self.data_g = Label(self.con_frame_2, text="Department", font=("times new roman", 15), bg="white",
+            #                     fg="black")
+            # self.data_g.place(relx=0.5, rely=0.01)
+            # self.data_g_1 = ttk.Combobox(self.con_frame_2, width=28, value=(
+            #     "Church Board", "Men", "Youth", "Women", "Children", "Music", "Intercessors", "Evangelism", "Ushering"),
+            #                              font=("times new roman", 14), textvariable="self.how")
+            # self.data_g_1.place(relx=0.65, rely=0.01)
 
             self.data_i = Label(self.con_frame_2, text="Company Name", font=("times new roman", 15), bg="white",
                                 fg="black")
-            self.data_i.place(relx=0.5, rely=0.16)
+            self.data_i.place(relx=0.5, rely=0.01)
             self.data_i_1 = Entry(self.con_frame_2, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.company")
-            self.data_i_1.place(relx=0.65, rely=0.16)
+                                  textvariable=self.company)
+            self.data_i_1.place(relx=0.65, rely=0.01)
 
             self.data_j = Label(self.con_frame_2, text="Post Address", font=("times new roman", 15), bg="white",
                                 fg="black")
-            self.data_j.place(relx=0.5, rely=0.31)
+            self.data_j.place(relx=0.5, rely=0.16)
             self.data_j_1 = Entry(self.con_frame_2, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.pst_address")
-            self.data_j_1.place(relx=0.65, rely=0.31)
+                                  textvariable=self.pst_address)
+            self.data_j_1.place(relx=0.65, rely=0.16)
 
             self.data_k = Label(self.con_frame_2, text="Emerg. Contact", font=("times new roman", 15), bg="white",
                                 fg="black")
-            self.data_k.place(relx=0.5, rely=0.46)
+            self.data_k.place(relx=0.5, rely=0.31)
             self.data_k_1 = Entry(self.con_frame_2, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.contact")
-            self.data_k_1.place(relx=0.65, rely=0.46)
+                                  textvariable=self.emergency_contact)
+            self.data_k_1.place(relx=0.65, rely=0.31)
 
             self.data_l = Label(self.con_frame_2, text="Edu. Level", font=("times new roman", 15), bg="white",
                                 fg="black")
-            self.data_l.place(relx=0.5, rely=0.61)
+            self.data_l.place(relx=0.5, rely=0.46)
             self.data_l_1 = ttk.Combobox(self.con_frame_2, width=28, value=(
                 "University", "SHS", "JHS", "Training college", "N/A"),
-                                         font=("times new roman", 14), textvariable="self.level")
-            self.data_l_1.place(relx=0.65, rely=0.61)
+                                         font=("times new roman", 14), textvariable=self.level)
+            self.data_l_1.place(relx=0.65, rely=0.46)
 
-            self.data_m = Label(self.con_frame_2, text="Year", font=("times new roman", 15), bg="white",
+            self.data_n = Label(self.con_frame_2, text="Year", font=("times new roman", 15), bg="white",
                                 fg="black")
-            self.data_m.place(relx=0.5, rely=0.76)
-            self.data_m_1 = Entry(self.con_frame_2, width=30, bg="white", fg="black", font=("times new roman", 14),
-                                  textvariable="self.edu_instution")
-            self.data_m_1.place(relx=0.65, rely=0.76)
+            self.data_n.place(relx=0.5, rely=0.61)
+            self.data_n_1 = Entry(self.con_frame_2, width=30, bg="white", fg="black", font=("times new roman", 14),
+                                  textvariable=self.year_completed)
+            self.data_n_1.place(relx=0.65, rely=0.61)
 
             # ==================================================commands register buttons ==================================
 
@@ -232,7 +257,32 @@ class Add_Member():
             self.btn_frame.place(relx=0.8, rely=0.46)
 
             self.upload_btn = Button(self.btn_frame, text="SUBMIT", font=("times new roman ", 14), width=14,
-                                     command="Submit", bg="#9A0033", fg="white")
+                                     command=backend_1.insert(
+                                         memberId=self.id.get(),
+                                         memberName=self.name.get(),
+                                         memberType=self.type.get(),
+                                         placeofBirth=self.place_of_birth.get(),
+                                         dateofBirth=self.date_of_birth.get(),
+                                         gender=self.gender.get(),
+                                         department=self.department.get(),
+                                         telephone=self.phone.get(),
+                                         address=self.address.get(),
+                                         email=self.email.get(),
+                                         maritalStatus=self.status.get(),
+                                         occupation=self.occupation.get(),
+                                         fax=self.fax.get(),
+                                         employer=self.employer.get(),
+                                         hometown=self.hometown.get(),
+                                         region=self.region.get(),
+                                         tither=self.Tithe.get(),
+                                         healthStatus=self.health.get(),
+                                         companyName=self.company.get(),
+                                         postAddress=self.pst_address.get(),
+                                         emergencyContact=self.emergency_contact.get(),
+                                         educationLevel=self.level.get(),
+                                         yearCompleted=self.year_completed.get()
+
+                                     ), bg="#9A0033", fg="white")
             self.upload_btn.place(relx=0.05, rely=0.01)
 
             self.upload_btn = Button(self.btn_frame, text="RESET", font=("times new roman ", 14), width=14,
@@ -248,6 +298,7 @@ class Add_Member():
 
         add_mem()
 
+
 master = Tk()
-obj = Add_Member(master)
+obj = AddMember(master)
 master.mainloop()

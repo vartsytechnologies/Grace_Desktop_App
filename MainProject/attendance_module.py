@@ -15,8 +15,8 @@ class Attendance:
         def attendance():
             def view_content():
                 self.listbox_at.delete(0, END)
-                for row in backend_1.view():
-                    self.listbox_at.insert(END, f"{row[0]}          {row[1]}          {row[2]}", str(' '))
+                # for row in backend_1.view():
+                #     self.listbox_at.insert(END, f"{row[0]}          {row[1]}          {row[2]}", str(' '))
 
             self.sort.set("Sort by")
             self.masterframe = Frame(self.master, width=1400, height=750, bg="#9A0033")
